@@ -4,6 +4,22 @@ require '../vendor/autoload.php';
 use DeividFortuna\Fipe\FipeCarros;
 use DeividFortuna\Fipe\IFipe;
 
+$api_key = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1MDUyZjZlYS04YmUwLTRmZWQtOTEzNy1mN2NlNzMwODZiNTkiLCJlbWFpbCI6ImRlaXZpZGZvcnR1bmFAZ21haWwuY29tIiwiaWF0IjoxNzE1MDUxODI1fQ.s8qiJNFvluxL6k7BrbXZyutNz1U_e6-FshVCq8ol2RY';
+$url = 'https://fipe.parallelum.com.br/api/v2/references';
+$pars = array();
+$headers = array(
+   'X-Subscription-Token' => $api_key
+);
+$ch = curl_init($url);
+curl_setopt($ch, CURLOPT_HTTPHEADER, ["X-Subscription-Token:$api_key"]);
+curl_setopt($ch, CURLOPT_HEADER, 0);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+$output = curl_exec($ch);
+curl_close($ch);
+var_dump($output);
+die();
+
 try {
     $codMarca = filter_input(INPUT_GET, 'codMarca');
     $codModelo = filter_input(INPUT_GET, 'codModelo');
